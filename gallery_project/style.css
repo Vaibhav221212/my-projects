@@ -1,0 +1,78 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing:border-box;
+}
+
+.wrapprer{
+    height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.cont{
+    width: 1200px;
+    margin:0px auto;
+    padding: 20px;
+}
+.cont h1{
+    margin:10px 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color:violet;
+    text-shadow: 2px 2p 2px black ;
+}
+
+.image{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.fig{
+    width:32%;
+    position:relative;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow:hidden;
+}
+
+.fig img{
+    width:100%;
+    height:100%;
+    filter: grayscale(100%);
+    box-shadow: 0 0 20px #333;
+    object-fit: cover;
+}
+
+.fig:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+    filter: drop-shadow(0 0 10 #333);
+}
+
+.fig img:hover{
+    filter: grayscale(0%);
+}
+
+.fig figcaption{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px;
+    width: 100%;
+    height: 20%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0;
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: 0.3s;
+}
+
+.fig figcaption:hover  {
+    opacity: 1;
+    transform: scale(1.03);
+  }  
