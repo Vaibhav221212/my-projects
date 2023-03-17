@@ -1,0 +1,40 @@
+.container{
+    width: 100%;
+
+}
+
+.nav-bar{
+    width: 80%;
+    margin: 0 auto;
+    background-color: lightblue;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    
+}
+.img img{
+    width: 150px;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    list-style-type:none ;
+}
+
+.logo{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    justify-content:space-between;
+    gap: 10px;
+}
+.logo button #login{
+    background-color:transparent;
+    border: blue 1px solid;
+}
+button #signup{
+    background-color: white;
+    color: black;
+}
