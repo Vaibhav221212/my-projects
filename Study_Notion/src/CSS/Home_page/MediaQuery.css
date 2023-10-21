@@ -1,0 +1,31 @@
+@media screen and (max-width: 1020px) {
+    body {
+   
+    }
+    .nav-bar
+    {
+    
+       opacity: 0;
+        
+    }
+
+    .login-signup{
+    position: absolute;
+     right: 20px;
+    }
+    
+  }
+  @media screen and (max-width: 550px) {
+  
+    .login-signup
+    {
+        opacity: 0;
+    
+    }
+    
+  
+   
+  
+  }
+
+ 

@@ -1,0 +1,49 @@
+.text-bg
+{
+
+    background-image: linear-gradient(#f5f5f509 24%,  #ffffff0f 38%);
+    
+}
+.video
+{
+    box-shadow: 0px 0px  120px 10px  #7f6794;
+   border-radius: 30px 0px 30px 0px;
+   overflow: hidden;
+}
+
+
+.wrapper
+{
+    background: #0d1726;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+.circle
+{
+    background-image: linear-gradient(120deg, rgba(133, 60, 60, 0.746), rgb(19, 100, 50),rgb(45, 10, 215));
+    filter: blur(80px);
+    
+}
+
+.circle-two
+{
+    background-image: linear-gradient(120deg, rgba(255, 0, 0, 0.746), rgba(32, 53, 17, 0.385),rgb(254, 6, 163));
+    filter: blur(80px);
+    
+}
+
+
+.homepage-bg
+{
+    background-image: url("../.././assets/Images/bghome.svg");
+}
+
+.instructor-image
+{
+    box-shadow: 0px 0px  20px 20px  #545472;
+}
+
+
+

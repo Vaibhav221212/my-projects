@@ -1,0 +1,116 @@
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { apiConnector } from '../services/apiconnector'
+import Course_Slider from '../components/core/catalog/Course_Slider'
+import CourseCard from '../components/core/catalog/CourseCard'
+import toast from 'react-hot-toast'
+
+const Catalog = () => {
+  const name = "hello"
+  const { categoryId } = useParams()
+  const [catalogPagedata, setCatalogPageData] = useState(null)
+  const [active, setActive] = useState()
+
+
+  useEffect(() => {
+    console.log("catId", categoryId)
+
+    const getCategories = async () => {
+     
+      const tostId = toast.loading("loading..,")
+      const res = await apiConnector("POST", "/categoryPageDetails", { categoryId: categoryId })
+      if (!res.data.success) {
+        await toast.error(res.data.message);
+        toast.dismiss(tostId)
+        return;
+      }
+      else {
+        setCatalogPageData(res?.data?.data)
+      }
+      toast.dismiss(tostId)
+    }
+    getCategories()
+  }, [categoryId])
+
+  return (
+    <>
+      {/* Hero Section */}
+      <div className=" box-content bg-richblack-800 px-4">
+        <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
+          <p className="text-sm text-richblack-300">
+            {`Home / Catalog / `}
+            <span className="text-yellow-25">
+              {catalogPagedata?.selectedCategory?.name}
+            </span>
+          </p>
+          <p className="text-3xl text-richblack-5">
+            {catalogPagedata?.selectedCategory?.name}
+          </p>
+          <p className="max-w-[870px] text-richblack-200">
+            {catalogPagedata?.selectedCategory?.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Section 1 */}
+      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+        <div className="section_heading">Courses to get you started</div>
+        <div className="my-4 flex border-b border-b-richblack-600 text-sm">
+          <p
+            className={`px-4 py-2 ${active === 1
+                ? "border-b border-b-yellow-25 text-yellow-25"
+                : "text-richblack-50"
+              } cursor-pointer`}
+            onClick={() => setActive(1)}
+          >
+            Most Populer
+          </p>
+          <p
+            className={`px-4 py-2 ${active === 2
+                ? "border-b border-b-yellow-25 text-yellow-25"
+                : "text-richblack-50"
+              } cursor-pointer`}
+            onClick={() => setActive(2)}
+          >
+            New
+          </p>
+        </div>
+        <div>
+          <Course_Slider
+            Courses={catalogPagedata?.selectedCategory?.courses}
+          />
+        </div>
+      </div>
+      {/* Section 2 */}
+      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+        <div className="section_heading">
+          Top courses in {catalogPagedata?.data?.differentCategory?.name}
+        </div>
+        <div className="py-8">
+          <Course_Slider
+            Courses={catalogPagedata?.differentCategory?.courses}
+          />
+        </div>
+      </div>
+
+      {/* Section 3 */}
+      <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+        <div className="section_heading">Frequently Bought</div>
+        <div className="py-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {catalogPagedata?.data?.mostSellingCourses
+              ?.slice(0, 4)
+              .map((course, i) => (
+                <CourseCard course={course} key={i} Height={"h-[400px]"} />
+              ))}
+          </div>
+        </div>
+      </div>
+
+
+    </>
+  )
+}
+
+export default Catalog
