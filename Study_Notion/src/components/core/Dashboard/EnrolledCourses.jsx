@@ -19,7 +19,7 @@ const EnrolledCourses = () => {
             const response = await getEnrolledCourses(token);
 
             if (response) {
-                setCourses(response.courses);
+                setCourses(response);
                 console.log("response", response);
                 console.log("course",Courses)
             }
@@ -35,13 +35,13 @@ const EnrolledCourses = () => {
     },[])
     return (
         <>
-          <div className="text-3xl text-richblack-50">Enrolled Courses</div>
+          <div className="text-3xl flex justify-center items-center mt-2 py-10 text-richblack-50 text-4xl font-bold text-richblue-200">Enrolled Courses</div>
           {!enrolledCourses ? (
             <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
               <div className="spinner"></div>
             </div>
           ) : !Courses.length ? (
-            <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
+            <p className="grid h-[10vh] w-[50%] mt-80 text-[18px] mx-auto  font-bold text-richblue-100  rounded-lg justify-center items-center place-content-center text-richblack-5">
               You have not enrolled in any course yet.
               {/* TODO: Modify this Empty State */}
             </p>

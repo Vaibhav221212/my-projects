@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 const Profile = require("../modules/profile");
 const jwt = require("jsonwebtoken");
 const { mailSender } = require("../util/mailSender");
+const passwordUpdated=require("../templates/passwordUpdate")
 require("dotenv").config()
 
 
@@ -140,9 +141,9 @@ exports.signup = async (req, res) => {
 		console.log(response);
 		if (response.length === 0) {
 			// OTP not found for the email
-			return res.status(400).json({
+			return res.json({
 				success: false,
-				message: "The OTP is not valid",
+				message: "The OTP is expire",
 			});
 		} 
 		else if (otp !== response[0].otp) {
@@ -307,6 +308,7 @@ exports.changePassword = async (req, res) => {
 		message: "password update sucsessfully"
 	})
 
-	mailSender(email, "password update succsesfully")
+	 const body=passwordUpdated(`${userPresent.firtName}${" "}${userPresent.lastName}`,userPresent.lastName)
+	mailSender(email,body,"password update succsesfully")
 
 }

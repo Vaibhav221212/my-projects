@@ -5,36 +5,51 @@ import { apiConnector } from '../services/apiconnector'
 import Course_Slider from '../components/core/catalog/Course_Slider'
 import CourseCard from '../components/core/catalog/CourseCard'
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
+import { setLoading } from '../slices/ProfileSlice'
 
 const Catalog = () => {
   const name = "hello"
   const { categoryId } = useParams()
   const [catalogPagedata, setCatalogPageData] = useState(null)
   const [active, setActive] = useState()
+  const { loading } = useSelector((state) => state.profile);
+
 
 
   useEffect(() => {
     console.log("catId", categoryId)
 
     const getCategories = async () => {
-     
+
+
       const tostId = toast.loading("loading..,")
+
+      setLoading(true);
       const res = await apiConnector("POST", "/categoryPageDetails", { categoryId: categoryId })
+
       if (!res.data.success) {
         await toast.error(res.data.message);
         toast.dismiss(tostId)
         return;
       }
       else {
+        console.log("res", res)
         setCatalogPageData(res?.data?.data)
+        setLoading(false);
       }
       toast.dismiss(tostId)
     }
     getCategories()
   }, [categoryId])
 
+
   return (
-    <>
+
+
+
+    <div>
+
       {/* Hero Section */}
       <div className=" box-content bg-richblack-800 px-4">
         <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
@@ -59,8 +74,8 @@ const Catalog = () => {
         <div className="my-4 flex border-b border-b-richblack-600 text-sm">
           <p
             className={`px-4 py-2 ${active === 1
-                ? "border-b border-b-yellow-25 text-yellow-25"
-                : "text-richblack-50"
+              ? "border-b border-b-yellow-25 text-yellow-25"
+              : "text-richblack-50"
               } cursor-pointer`}
             onClick={() => setActive(1)}
           >
@@ -68,8 +83,8 @@ const Catalog = () => {
           </p>
           <p
             className={`px-4 py-2 ${active === 2
-                ? "border-b border-b-yellow-25 text-yellow-25"
-                : "text-richblack-50"
+              ? "border-b border-b-yellow-25 text-yellow-25"
+              : "text-richblack-50"
               } cursor-pointer`}
             onClick={() => setActive(2)}
           >
@@ -107,10 +122,12 @@ const Catalog = () => {
           </div>
         </div>
       </div>
+    </div>)
 
 
-    </>
-  )
+
+
+
 }
 
 export default Catalog

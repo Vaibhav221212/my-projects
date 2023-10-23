@@ -121,7 +121,9 @@ exports.categoryPageDetails = async (req, res) => {
     try {
         const { categoryId } =  req.body;
         console.log("id",categoryId)
+        console.log("category..,")
      
+        
 
         const selectedCategory = await Category.findById(categoryId)
             .populate(

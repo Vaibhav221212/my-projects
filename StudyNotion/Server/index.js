@@ -60,8 +60,13 @@ app.use(fileupload({
     tempFileDir : '/tmp/'
 }));
 
-const port=4000;
-app.listen(port,()=>
+const dotenv = require("dotenv");
+
+dotenv.config();
+const PORT =4000;
+
+console.log("port",PORT)
+app.listen(PORT,()=>
 {
-    console.log(`app running on port ${port} ..,`);
+    console.log(`app running on port ${PORT} ..,`);
 })

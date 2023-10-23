@@ -68,7 +68,7 @@ export const getFullDetailsOfCourse = async (data,token) => {
             return
         }
         toast.success("course get successfully")
-        result = response?.data?.data;
+        result = response?.data;
         toast.dismiss(toastId);
         return result;
 

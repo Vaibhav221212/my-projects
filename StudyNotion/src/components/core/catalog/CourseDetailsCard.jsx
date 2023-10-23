@@ -38,7 +38,7 @@ const CourseDetailsCard = ({ course, setConfirmationModal, handleBuyCourse }) =>
   }
 
   return (
-    <div>
+    <div className='bg-richblack-600 right-20 p-5 rounded-lg w-[25%] z-30 absolute opacity-80 flex flex-col justify-center items-center gap-3 '>
       <img
         src={ThumbnailImage}
         alt="Thumbanil Image"
@@ -46,24 +46,28 @@ const CourseDetailsCard = ({ course, setConfirmationModal, handleBuyCourse }) =>
       >
 
       </img>
-      <div>
-        Rs.{CurrentPrice}
-      </div>
 
-      <div className='flex  flex-col  gap-y-6'>
-
+      <div className='flex  w-[80%] py-2 justify-between items-center'>
+        <div>
+          Rs.{CurrentPrice}
+        </div>
         <button
           onClick={
             user && course?.studentsEnrolled.includes(user._id) ? () => navigate("/dashboard/enrolled-courses") : handleBuyCourse
           }
-          className='flex flex-col gap-y-6'>
+          className='flex justify-center items-center px-3 rounded-lg  bg-black text-richblack-25 py-2 '>
           {user && course?.studentsEnrolled.includes(user._id) ? "Go to course" : " Buy Now"}
         </button>
+      </div>
+
+      <div className='flex  flex-col  gap-y-6'>
+
+
 
         {
           !course?.studentsEnrolled.includes(user._id) &&
           <button onClick={handleAddToCart}
-            className='bg-yellow-50 w-fit text-richblack-900'>
+            className='bg-yellow-50  text-richblack-900 w-[100%] px-20 rounded-lg py-2'>
             Add to Cart
           </button>
         }
